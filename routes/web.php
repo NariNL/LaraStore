@@ -16,4 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/sipping', [App\Http\Controllers\ShippingController::class, 'index']);
+Route::get('/sipping', [App\Http\Controllers\SippingController::class, 'index']);
+Route::get('/sipping/store', [App\Http\Controllers\SippingController::class, 'store']);
+Route::get('/sipping/edit/{id}', [App\Http\Controllers\SippingController::class, 'edit']);
