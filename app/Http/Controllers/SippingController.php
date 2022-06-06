@@ -36,9 +36,16 @@ class SippingController extends Controller
      * 
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Request $request){
+        //登録処理を書く(新しくレコードを追加する)
+        $member = new Member();
+        $member->name = $request->name;
+        $member->phone = $request->phone;
+        $member->email = $request->email;
+        $member->save();
+
+        //一覧画面に戻す
+        return redirect('/sipping');
     }
 
 
@@ -60,9 +67,17 @@ class SippingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //既存のレコードを取得して、編集してから保存する
+        $member = Member::where('id','=', $request->id)->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+        ]);
+        
+
+        return redirect('/sipping');
     }
 
     /**
@@ -71,8 +86,12 @@ class SippingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request){
+        //既存のレコードを取得して、削除する
+        $member = Member::where('id','=', $request->id)->first();
+        $member->delete();
+
+        return redirect('/sipping');
+
     }
 }
