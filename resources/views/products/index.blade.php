@@ -1,12 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
+
     <div class="panel-body">
-        <!-- バリデーションエラーの表示 -->
-        @include('common.errors')
+
 
         <!-- 商品登録フォーム -->
-        <form action="{{ url('product') }}" method="POST" class="form-horizontal">
+        <form method="POST" action="/product"  class="form-horizontal">
             {{ csrf_field() }}
 
             <!-- 商品名 -->
@@ -58,6 +58,16 @@
             </div>
         </form>
     </div>
+        {{-- エラーメッセージ --}}
+    @if ($errors->any())
+    <div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+    </div>
+    @endif
 
     <!-- 商品一覧一覧表示 -->
     @if (count($products) > 0)
@@ -88,19 +98,16 @@
                             <div>{{$product->size}}</div>
                             <div>{{$product->image}}</div>
                             <div>{{$product->price}}円</div>
-                        </td>
-
-                        <td>
-                            <!-- 商品: 削除ボタン -->
-                            {{-- <form action="{{ url('task/'.$task->id) }}" method="POST">
+                            <form action="{{ url('product/'.$product->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
 
-                                <button type="submit" id="delete-task-{{ $task->id }}" class="btn btn-danger">
+                                <button type="submit" id="delete-product-{{ $product->id }}" class="btn btn-danger">
                                     <i class="fa fa-btn fa-trash"></i>削除
                                 </button>
-                            </form> --}}
+                            </form>
                         </td>
+
                     </tr>
                     @endforeach
                 </tbody>

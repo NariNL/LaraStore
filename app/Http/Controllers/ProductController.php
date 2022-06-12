@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -9,48 +10,60 @@ class ProductController extends Controller
     /**
      *一覧ページ
      *
-     * @param  Request $request
-     * @return Response
+     *@param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        $products = $request->products()->get();
+        $products = Product::orderBy('created_at', 'desc')->get();
         return view('products.index', [
-            'products' => $products,
-        ]);
+            'products' => $products]);
     }
+
+
 
     /**
      * 商品登録
-     * @param  Request $request
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      *
      */
-    public function store (Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required|max:100',
-            'maker' => 'required|max:100',
-            'description' => 'required|max:500',
-            'image' => 'image',
+            'title' => 'required',
+            'maker' => 'required',
+            'description' => 'required',
+            'color' => 'required',
             'price' => 'required|integer',
-
         ]);
 
-        // 商品作成
+        $product = new Product();
+        $product->title = $request->title;
+        $product->maker = $request->maker;
+        $product->description = $request->description;
+        $product->color = $request->color;
+        $product->size = $request->size;
+        $product->image = $request->image;
+        $product->price = $request->price;
+        $product->save();
 
-        $request->products()->create([
-            'title' => $request->title,
-            'maker' => $request->maker,
-            'description' => $request->description,
-            'color' => $request->color,
-            'size' => $request->size,
-            'image' => $request->image,
-            'price' => $request->price,
-        ]);
+        return redirect('/products');
 
-        return redirect('/tasks');
+    }
 
+    /**
+     * 商品削除
+     *
+     * @param Request $request
+     * @param Product $product
+     * @return Response
+     */
+
+    public function destroy (Request $request, Product $product)
+    {
+        $product->delete();
+        return redirect('/products');
     }
 
 

@@ -12,9 +12,6 @@ class Product extends Model
     protected $fillable = ['title', 'maker', 'description', 'color',
                             'size', 'image', 'price'];
 
-    public function register()
-    {
-        return $this->hasmany(Order::class);
-    }
+
 
 }
