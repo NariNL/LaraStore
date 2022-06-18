@@ -19,9 +19,13 @@ Route::get('/', function () {
 
 
 
-Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
-Route::post('/product', [App\Http\Controllers\ProductController::class, 'store'])->name('product');
-Route::delete('/product/{product}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('/product/{product}');
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']);
+Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']);
+Route::delete('/product/{product}', [\App\Http\Controllers\ProductController::class, 'destroy']);
+Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit']);
+Route::post('/product/update', [App\Http\Controllers\ProductController::class, 'update']);
+Route::get('/product/detail/{id}', [App\Http\Controllers\ProductController::class, 'detail']);
+
 Route::get('/sipping', [App\Http\Controllers\SippingController::class, 'index']);
 Route::get('/sipping/store', [App\Http\Controllers\SippingController::class, 'store']);
 Route::get('/sipping/edit/{id}', [App\Http\Controllers\SippingController::class, 'edit']);

@@ -4,7 +4,7 @@
 
     <div class="panel-body">
 
-
+        <th>商品登録</th>
         <!-- 商品登録フォーム -->
         <form method="POST" action="/product"  class="form-horizontal">
             {{ csrf_field() }}
@@ -72,16 +72,13 @@
     <!-- 商品一覧一覧表示 -->
     @if (count($products) > 0)
     <div class="panel panel-default">
-        <div class="panel-heading">
-            商品一覧
-        </div>
 
         <div class="panel-body">
             <table class="table table-striped task-table">
 
                 <!-- 商品一覧ヘッダ -->
                 <thead>
-                    <th>商品</th>
+                    <th>商品一覧</th>
                     <th>&nbsp;</th>
                 </thead>
 
@@ -91,23 +88,22 @@
                         <!-- 商品情報テーブル -->
                         <td class="">
                             <div>{{$product->title}}</div>
-                            <div>{{$product->maker}}</div>
+                            {{-- <div>{{$product->maker}}</div>
                             <div>{{$product->description}}</div>
                             <div>{{$product->title}}</div>
                             <div>{{$product->color}}</div>
                             <div>{{$product->size}}</div>
                             <div>{{$product->image}}</div>
-                            <div>{{$product->price}}円</div>
+                            <div>{{$product->price}}円</div> --}}
+                            <a href="/product/detail/{{$product->id}}">商品を見る</a>
                             <form action="{{ url('product/'.$product->id) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-
                                 <button type="submit" id="delete-product-{{ $product->id }}" class="btn btn-danger">
                                     <i class="fa fa-btn fa-trash"></i>削除
                                 </button>
                             </form>
                         </td>
-
                     </tr>
                     @endforeach
                 </tbody>
