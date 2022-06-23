@@ -5,7 +5,9 @@
     <div>
         <p class="title">配送会社編集 配送会社ID:{{$members->id}}</p>
     </div>
- 
+    @foreach ($errors->all() as $error)
+    <li>{{$error}}</li>
+    @endforeach
     <div class="panel-body">
         <form action="{{url('/update')}}" method="POST">
         @csrf 
