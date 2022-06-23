@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SippingController extends Controller
 {
@@ -37,6 +38,12 @@ class SippingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request){
+        //バリデーションの処理を書く
+        $validated = $request->validate([ 
+           'name' => 'required | string', 
+           'phone' => 'required | digits_between:5,12',
+           'email' => 'required | email | max:255',
+       ]);
         //登録処理を書く(新しくレコードを追加する)
         $member = new Member();
         $member->name = $request->name;
@@ -68,7 +75,13 @@ class SippingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {
+    {   
+        //バリデーションの処理を書く
+        $validated = $request->validate([ 
+            'name' => 'required | string', 
+            'phone' => 'required | digits_between:5,12',
+            'email' => 'required | email | max:255',
+        ]);
         //既存のレコードを取得して、編集してから保存する
         $member = Member::where('id','=', $request->id)->update([
             'name' => $request->name,

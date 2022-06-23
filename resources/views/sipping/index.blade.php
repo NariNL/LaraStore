@@ -2,6 +2,9 @@
 @section('content')
 
 <div class="panel panel-default">
+    <div>
+        <p class="title">配送会社一覧</p>
+    </div>
  
     <div class="panel-body">
         <a href="/sipping/store">登録</a>

@@ -6,7 +6,9 @@
     <div>
         <p class="title">配送会社登録</p>
     </div>
- 
+    @foreach ($errors->all() as $error)
+    <li>{{$error}}</li>
+    @endforeach
     <div class="panel-body">
         <form action="{{url('/create')}}" method="POST">
         @csrf
