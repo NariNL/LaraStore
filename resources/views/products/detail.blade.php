@@ -10,6 +10,7 @@
             <div>色：<strong>{{$product->color}}</strong></div>
             <div>サイズ：<strong>{{$product->size}}</strong></div>
             <div>{{$product->image}}</div>
+            <div>在庫数:<strong>{{$stock_inventory}}</strong></div>
             <div>値段：<strong>{{$product->price}}</strong></div>
             <a href="/product/edit/{{$product->id}}">編集</a>
             <a href="/products">一覧に戻る</a>
