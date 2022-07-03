@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-
+    <div class="container">
     <div class="panel-body">
 
         <th>商品登録</th>
@@ -57,6 +57,7 @@
                 </div>
             </div>
         </form>
+    </div>
     </div>
         {{-- エラーメッセージ --}}
     @if ($errors->any())
