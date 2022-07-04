@@ -32,4 +32,6 @@ Route::get('/sipping/edit/{id}', [App\Http\Controllers\SippingController::class,
 Route::post('/create', [App\Http\Controllers\SippingController::class, 'create']);
 Route::post('/update', [App\Http\Controllers\SippingController::class, 'update']);
 Route::get('/destroy/{id}', [App\Http\Controllers\SippingController::class, 'destroy']);
-Route::post('/stock', [App\Http\Controllers\StockController::class, 'add']);
+Route::get('/stock', [App\Http\Controllers\StockController::class, 'index']);
+Route::get('/stock/edit/{id}', [App\Http\Controllers\StockController::class, 'editstock']);
+Route::post('/stock/add/', [App\Http\Controllers\StockController::class, 'addstock']);
