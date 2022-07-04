@@ -17,8 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
 
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']);
 Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']);
 Route::delete('/product/{product}', [\App\Http\Controllers\ProductController::class, 'destroy']);

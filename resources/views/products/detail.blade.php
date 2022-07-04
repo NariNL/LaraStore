@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-
+    <div class="container">
     <div class="panel-body">
         <td class="">
             <div>商品名：<strong>{{$product->title}}</strong></div>
@@ -16,5 +16,6 @@
             <a href="/products">一覧に戻る</a>
         </td>
 
+    </div>
     </div>
 @endsection

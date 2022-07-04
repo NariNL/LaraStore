@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-
+    <div class="container">
     <div class="panel-body">
         <h2>商品編集</h2>
         <!-- 商品編集フォーム -->
@@ -57,5 +57,6 @@
                 </ul>
                 </div>
             @endif
+    </div>
     </div>
 @endsection
