@@ -17,8 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes();
 
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']);
 Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']);
 Route::delete('/product/{product}', [\App\Http\Controllers\ProductController::class, 'destroy']);
@@ -42,4 +43,6 @@ Route::get('/sipping/edit/{id}', [App\Http\Controllers\SippingController::class,
 Route::post('/create', [App\Http\Controllers\SippingController::class, 'create']);
 Route::post('/update', [App\Http\Controllers\SippingController::class, 'update']);
 Route::get('/destroy/{id}', [App\Http\Controllers\SippingController::class, 'destroy']);
-
+Route::get('/stock', [App\Http\Controllers\StockController::class, 'index']);
+Route::get('/stock/edit/{id}', [App\Http\Controllers\StockController::class, 'editstock']);
+Route::post('/stock/add/', [App\Http\Controllers\StockController::class, 'addstock']);
