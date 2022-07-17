@@ -35,7 +35,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div>{{$cartItem['sessionProductPrice']}}円</div>
+                                <div>単価：{{$cartItem['sessionProductPrice']}}円</div>
                             </td>
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <div>小計{{$cartItem['sessionProductQty']*$cartItem['sessionProductPrice']}}円</div>
+                                <div>小計：{{$cartItem['sessionProductSubTotal']}}円</div>
                             </td>
                         </tr>
 
@@ -64,6 +64,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <div>合計：{{$sessionTotalPrice}}円</div>
         </div>
     </div>
     @else

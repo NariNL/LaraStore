@@ -13,9 +13,15 @@ class ProductCartController extends Controller
     {
         $sessionProductData = $request->session()->get('session_product_data');
         //dd($sessionProductData);
-
+        $sessionTotalPrice=0;
+        foreach($sessionProductData as $sessionEachProduct)
+        {
+            $sessionTotalPrice+=$sessionEachProduct['sessionProductSubTotal'];
+        }
         return view('products.cart', [
-            'sessionProductData' => $sessionProductData]);
+            'sessionProductData' => $sessionProductData,
+            'sessionTotalPrice' => $sessionTotalPrice
+        ]);
 
     }
 
@@ -31,6 +37,7 @@ class ProductCartController extends Controller
         $sessionProductSize = $request->size;
         $sessionProductPrice = $request->price;
         $sessionProductQty = $request->qty;
+        $sessionProductSubTotal = $request->price*$request->qty;
 
         $sessionProductData = array();
         $sessionProductData = compact(
@@ -39,7 +46,8 @@ class ProductCartController extends Controller
             'sessionProductColor',
             'sessionProductSize',
             'sessionProductPrice',
-            'sessionProductQty'
+            'sessionProductQty',
+            'sessionProductSubTotal'
         );
 
         if($request->session()->has('session_product_data'))
@@ -50,7 +58,9 @@ class ProductCartController extends Controller
                 if($sessionData['sessionProductId']==$sessionProductData['sessionProductId'])
                 {
                     $newQuantity = $sessionData['sessionProductQty']+$sessionProductData['sessionProductQty'];
+                    $newSubTotal = $sessionData['sessionProductSubTotal']+$sessionProductData['sessionProductSubTotal'];
                     $request->session()->put('session_product_data.' . $index . '.sessionProductQty', $newQuantity);
+                    $request->session()->put('session_product_data.' . $index . '.sessionProductSubTotal', $newSubTotal);
                     $request->session()->flash('カートに追加されました');
                     return redirect('/products/visitor');
                 }
