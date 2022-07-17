@@ -67,7 +67,7 @@
         </div>
     </div>
     @else
-    <div>カートは空です。</div>
+        <div>カートは空です。</div>
     @endif
     <div>
         <a href="/products/visitor">買い物を続ける</a>

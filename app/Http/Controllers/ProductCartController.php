@@ -12,6 +12,7 @@ class ProductCartController extends Controller
     public function indexCart (Request $request)
     {
         $sessionProductData = $request->session()->get('session_product_data');
+        //dd($sessionProductData);
 
         return view('products.cart', [
             'sessionProductData' => $sessionProductData]);
@@ -72,27 +73,19 @@ class ProductCartController extends Controller
 
     public function removeCart (Request $request)
     {
-
-
-        //$sessionRemoveData=$request->session()->get('session_product_data');
-        //dd($request->id);
-
-
-        // foreach ($sessionRemoveData as $key => $N)
-        // {
-        //     if($request->id == $N['sessionProductId'])
-
-        //     $request->session()->forget($N);
-        //     return redirect('/product/cart_items');
-        // }
-        // dd($sessionRemoveData);
-        // $request->session()->forget($key);
-        // return redirect('/product/cart_items');
-        //取得したいもののみをforgetで削除したい
+        $sessionProductData=$request->session()->get('session_product_data');
+        foreach($sessionProductData as $key=>$remove){
+            if($request->id==$remove['sessionProductId'])
+            {
+                unset($sessionProductData[$key]);
+                $sessionProductData=array_values($sessionProductData);
+            }
+            else
+            {
+                continue;
+            }
+        }
+        $request->session()->put('session_product_data',$sessionProductData);
+        return redirect('/product/cart_items');
     }
-
-
-
-
-
 }
