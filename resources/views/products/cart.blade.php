@@ -5,7 +5,11 @@
 
     @if (count($sessionProductData) > 0)
     <div class="panel panel-default">
-
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
         <div class="panel-body">
             <table class="table table-striped task-table">
 

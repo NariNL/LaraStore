@@ -61,8 +61,7 @@ class ProductCartController extends Controller
                     $newSubTotal = $sessionData['sessionProductSubTotal']+$sessionProductData['sessionProductSubTotal'];
                     $request->session()->put('session_product_data.' . $index . '.sessionProductQty', $newQuantity);
                     $request->session()->put('session_product_data.' . $index . '.sessionProductSubTotal', $newSubTotal);
-                    $request->session()->flash('カートに追加されました');
-                    return redirect('/products/visitor');
+                    return redirect('/products/visitor')->with('message','カートに追加されました' );
                 }
                 else
                 {
@@ -70,14 +69,12 @@ class ProductCartController extends Controller
                 }
             }
             $request->session()->push('session_product_data',$sessionProductData);
-            $request->session()->flash('カートに追加されました');
-            return redirect('/products/visitor');
+            return redirect('/products/visitor')->with('message','カートに追加されました' );
         }
         else
         {
             $request->session()->push('session_product_data',$sessionProductData);
-            $request->session()->flash('カートに追加されました');
-            return redirect('/products/visitor');
+            return redirect('/products/visitor')->with('message','カートに追加されました' );
         }
     }
 
@@ -96,6 +93,6 @@ class ProductCartController extends Controller
             }
         }
         $request->session()->put('session_product_data',$sessionProductData);
-        return redirect('/product/cart_items');
+        return redirect('/product/cart_items')->with('message','カートから削除されました');
     }
 }

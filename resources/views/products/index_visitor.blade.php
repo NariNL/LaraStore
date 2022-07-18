@@ -6,6 +6,11 @@
     <div class="panel panel-default">
 
         <div class="panel-body">
+            @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
             <table class="table table-striped task-table">
 
                 <!-- 商品一覧ヘッダ -->
