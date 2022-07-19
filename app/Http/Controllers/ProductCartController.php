@@ -12,7 +12,6 @@ class ProductCartController extends Controller
     public function indexCart (Request $request)
     {
         $sessionProductData = $request->session()->get('session_product_data');
-        //dd($sessionProductData);
         $sessionTotalPrice=0;
         foreach($sessionProductData as $sessionEachProduct)
         {
