@@ -22,6 +22,12 @@ class ProductController extends Controller
             'products' => $products]);
     }
 
+    public function indexVisitor()
+    {
+        $products = Product::orderBy('created_at', 'desc')->get();
+        return view('products.index_visitor', [
+            'products' => $products]);
+    }
 
 
     /**
@@ -129,4 +135,10 @@ class ProductController extends Controller
     }
 
 
+    public function detailVisitor(Request $request)
+    {
+        $product = Product::where('id', '=', $request->id)->first();
+        return view('products.detail_visitor', [
+            'product' => $product]);
+    }
 }

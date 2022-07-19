@@ -27,6 +27,16 @@ Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,
 Route::post('/product/update', [App\Http\Controllers\ProductController::class, 'update']);
 Route::get('/product/detail/{id}', [App\Http\Controllers\ProductController::class, 'detail']);
 
+Route::get('/products/visitor', [App\Http\Controllers\ProductController::class, 'indexVisitor']);
+Route::get('/product/visitor/detail/{id}', [App\Http\Controllers\ProductController::class, 'detailVisitor']);
+
+//カート
+Route::get('/product/cart_items', [App\Http\Controllers\ProductCartController::class, 'indexCart']);
+Route::delete('/product/cart_items/remove', [App\Http\Controllers\ProductCartController::class, 'removeCart']);
+Route::post('/product/cart', [App\Http\Controllers\ProductCartController::class, 'addCart']);
+
+
+
 Route::get('/sipping', [App\Http\Controllers\SippingController::class, 'index']);
 Route::get('/sipping/store', [App\Http\Controllers\SippingController::class, 'store']);
 Route::get('/sipping/edit/{id}', [App\Http\Controllers\SippingController::class, 'edit']);
