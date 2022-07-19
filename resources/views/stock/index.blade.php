@@ -10,7 +10,9 @@
 
                 <!-- 商品一覧ヘッダ -->
                 <thead>
-                    <th>商品一覧</th>
+                    <th>
+                        <h3>商品一覧</h3>
+                    </th>
                     <th>&nbsp;</th>
                 </thead>
 
@@ -19,7 +21,7 @@
                     <tr>
                         <!-- 商品情報テーブル -->
                         <td class="">
-                            <div>{{$product->title}}</div>
+                            <div class="h4">{{$product->title}}</div>
                             {{-- <div>{{$product->maker}}</div>
                             <div>{{$product->description}}</div>
                             <div>{{$product->title}}</div>
