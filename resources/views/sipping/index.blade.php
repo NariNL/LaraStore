@@ -11,8 +11,8 @@
         <table class="table table-striped task-table">
  
             <!-- テーブル本体 -->
-            <tbody>
-                <tr>
+            <tbody class="">
+                <tr class="">
                     <th>会社名</th>
                     <th>電話番号</th>
                     <th>メールアドレス</th>
@@ -32,7 +32,7 @@
                     </td>
                     <td>
                         <!-- TODO: 編集ボタン -->
-                        <a href="{{url('/sipping/edit/'.$member->id)}}" class="btn">編集</a>
+                        <a href="{{url('/sipping/edit/'.$member->id)}}" class="btn color-white">編集</a>
                     </td>
                 </tr>
                 @endforeach
