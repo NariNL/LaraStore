@@ -3,6 +3,9 @@
 
 
     <div class="panel-body">
+        @foreach ($errors->all() as $error)
+        <li>{{$error}}</li>
+        @endforeach
         <td class="">
             <div>商品名：<strong>{{$product->title}}</strong></div>
             <div>在庫数:<strong>{{$stock_inventory}}</strong></div>
