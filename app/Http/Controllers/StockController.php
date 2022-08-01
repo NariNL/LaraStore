@@ -43,6 +43,10 @@ class StockController extends Controller
 
     public function addstock(Request $request)
     {
+
+        $this->validate($request, [
+            'stock' => 'required|integer',
+        ]);
         $stock = new Stock;
         $stock->product_id = $request->product_id;
         $stock->inventory = $request->stock;
