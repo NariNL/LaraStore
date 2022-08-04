@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//商品登録
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']);
 Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']);
@@ -27,6 +28,7 @@ Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,
 Route::post('/product/update', [App\Http\Controllers\ProductController::class, 'update']);
 Route::get('/product/detail/{id}', [App\Http\Controllers\ProductController::class, 'detail']);
 
+//商品一覧
 Route::get('/products/visitor', [App\Http\Controllers\ProductController::class, 'indexVisitor']);
 Route::get('/product/visitor/detail/{id}', [App\Http\Controllers\ProductController::class, 'detailVisitor']);
 
@@ -35,14 +37,15 @@ Route::get('/product/cart_items', [App\Http\Controllers\ProductCartController::c
 Route::delete('/product/cart_items/remove', [App\Http\Controllers\ProductCartController::class, 'removeCart']);
 Route::post('/product/cart', [App\Http\Controllers\ProductCartController::class, 'addCart']);
 
-
-
+//配送会社
 Route::get('/sipping', [App\Http\Controllers\SippingController::class, 'index']);
 Route::get('/sipping/store', [App\Http\Controllers\SippingController::class, 'store']);
 Route::get('/sipping/edit/{id}', [App\Http\Controllers\SippingController::class, 'edit']);
 Route::post('/create', [App\Http\Controllers\SippingController::class, 'create']);
 Route::post('/update', [App\Http\Controllers\SippingController::class, 'update']);
 Route::get('/destroy/{id}', [App\Http\Controllers\SippingController::class, 'destroy']);
+
+//在庫管理
 Route::get('/stock', [App\Http\Controllers\StockController::class, 'index']);
 Route::get('/stock/edit/{id}', [App\Http\Controllers\StockController::class, 'editstock']);
 Route::post('/stock/add/', [App\Http\Controllers\StockController::class, 'addstock']);
